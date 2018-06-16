@@ -1,4 +1,4 @@
 /**
- * package info
+ * package info.
  */
 package com.example;
