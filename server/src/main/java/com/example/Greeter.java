@@ -12,8 +12,8 @@ public class Greeter {
 } 
 /**
    * This is a constructor.
-   * @param string name
-   * @return text
+   * @param use string name
+   * @return hello text
    */
   public final String greet(final String someone) {
     return String.format("Hello, %s!", someone);
