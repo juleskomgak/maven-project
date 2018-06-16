@@ -10,8 +10,7 @@ public class Greeter {
    */
   public Greeter() {
 
-  }
-   
+  } 
 /**
    * This is a constructor.
    */
