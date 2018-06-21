@@ -31,11 +31,11 @@ pipeline {
 
             post {
                 success {
-                     echo 'Production To prod successfull'
+                     echo 'Deploy To prod successfull'
                 }
 
                 failure {
-                     echo 'Production To prod fail'
+                     echo 'Deploy To prod fail'
                 }  
 
             }
