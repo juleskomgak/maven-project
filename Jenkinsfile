@@ -23,16 +23,16 @@ pipeline {
             }
         }
         stage('Deployments') {
-            parralel{
+            parralel {
                 stage('Deploy To Staging'){
                     steps {
-                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war"
+                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war  ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapp/"
                     }
                 }
 
                 stage('Deploy To Production'){
                     steps {
-                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war"
+                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapp/"
                     }
                 }
 
