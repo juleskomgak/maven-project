@@ -23,7 +23,9 @@ pipeline {
             }
         }
         stage('Deployments') {
-            parralel {
+            
+            steps {
+                parralel {
                 stage('Deploy To Staging'){
                     steps {
                         sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war  ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapp/"
@@ -36,6 +38,7 @@ pipeline {
                     }
                 }
 
+               }
             }
         }
 
