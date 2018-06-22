@@ -20,6 +20,12 @@ pipeline {
             }
 
         }
+        stage(' Static Analysis')  {
+            steps {
+                build job: 'static analysis'
+            }
+
+        }
         stage(' Deploy To Production') {
             steps {
                 timeout(time:5, unit:'DAYS') {
