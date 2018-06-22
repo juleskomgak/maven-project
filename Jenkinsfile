@@ -9,17 +9,30 @@ pipeline {
             pollSCM('* * * * *')
         }
     stages {
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                     echo 'Now Archiving ...'
+                     archiveArtifacts artifacts: '**/target/*.war'
+                }  
+
+            }
+        }
         stage('Deployments') {
-            parralel {
+            parralel{
                 stage('Deploy To Staging'){
                     steps {
-                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target"
+                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war"
                     }
                 }
 
                 stage('Deploy To Production'){
                     steps {
-                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target"
+                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target/*.war"
                     }
                 }
 
