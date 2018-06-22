@@ -8,21 +8,24 @@ pipeline {
         triggers {
             pollSCM('* * * * *')
         }
-    stage('Deployments') {
-        parralel {
-            stage('Deploy To Staging'){
-                steps {
-                    sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target"
+    stages {
+        stage('Deployments') {
+            parralel {
+                stage('Deploy To Staging'){
+                    steps {
+                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target"
+                    }
                 }
-            }
 
-            stage('Deploy To Production'){
-                steps {
-                    sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target"
+                stage('Deploy To Production'){
+                    steps {
+                        sh "scp -i /usr/local/Cellar/jenkins/2.95/tomcat-demo.pem **/target"
+                    }
                 }
-            }
 
+            }
         }
+
     }
 
 
